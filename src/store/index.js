@@ -3,8 +3,13 @@ import reducers from './reducers';
 
 const middlewares = [];
 
-const createAppropriateStore = process.env.NODE_ENV === 'development' ? console.tron.createStore : createStore;
+const composer = process.env.NODE_ENV
+  ? compose(
+    applyMiddleware(...middlewares),
+    console.tron.createEnhancer(),
+  )
+  : compose(applyMiddleware(...middlewares));
 
-const store = createAppropriateStore(reducers, compose(applyMiddleware(...middlewares)));
+const store = createStore(reducers, composer);
 
 export default store;
