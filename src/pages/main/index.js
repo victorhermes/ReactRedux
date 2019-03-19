@@ -47,6 +47,13 @@ class Main extends Component {
           <button type="submit">Enviar</button>
 
           {favorites.loading && <span>Carregando...</span>}
+          {!!favorites.error && (
+          <span>
+            {' '}
+            {favorites.error}
+            {' '}
+          </span>
+          )}
         </form>
 
         <ul>
